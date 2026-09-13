@@ -27,6 +27,11 @@
 @REM   MVNW_VERBOSE - true: enable verbose log; others: silence the output
 @REM ----------------------------------------------------------------------------
 
+@REM Use the Java 25 runtime bundled with the latest IntelliJ installation.
+@REM This keeps the project independent from an older system-wide Java version.
+@FOR /F "usebackq delims=" %%J IN (`powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0.mvn\find-java25.ps1"`) DO @SET "JAVA_HOME=%%J"
+@IF EXIST "%JAVA_HOME%\bin\java.exe" @SET "PATH=%JAVA_HOME%\bin;%PATH%"
+
 @IF "%__MVNW_ARG0_NAME__%"=="" (SET __MVNW_ARG0_NAME__=%~nx0)
 @SET __MVNW_CMD__=
 @SET __MVNW_ERROR__=
